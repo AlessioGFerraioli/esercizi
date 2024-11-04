@@ -1,2 +1,3 @@
 # esercizi
-Esercizi in Python novembre 2024 
+Esercizi in Python Novembre 2024 
+
