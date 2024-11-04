@@ -97,6 +97,8 @@ class Ristorante:
 
 
 ristorante_alessio = Ristorante("Alessione", "avanguardistica")
+
+'''
 # esempio di funzionamento: 
 ristorante_alessio.descrivi_ristorante()
 ristorante_alessio.stato_apertura()
@@ -105,7 +107,7 @@ ristorante_alessio.aggiungi_al_menu()
 ristorante_alessio.stampa_menu()
 ristorante_alessio.togli_dal_menu()
 ristorante_alessio.stampa_menu()
-
+'''
 
 
 while attivo = True:
