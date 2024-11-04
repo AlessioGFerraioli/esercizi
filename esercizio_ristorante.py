@@ -95,8 +95,9 @@ class Ristorante:
         self.menu.stampa_menu()
 
 
-ristorante_alessio = Ristorante("Alessione", "avanguardistica")
 
+ristorante_alessio = Ristorante("Alessione", "avanguardistica")
+# esempio di funzionamento: 
 ristorante_alessio.descrivi_ristorante()
 ristorante_alessio.stato_apertura()
 ristorante_alessio.aggiungi_al_menu()
@@ -104,3 +105,40 @@ ristorante_alessio.aggiungi_al_menu()
 ristorante_alessio.stampa_menu()
 ristorante_alessio.togli_dal_menu()
 ristorante_alessio.stampa_menu()
+
+
+
+while attivo = True:
+    print(f"Sistema Ristorante ", ristorante_alessio.nome)
+    print(f"Digita: ")
+    print()
+    print("descr/d per una descrizione del ristorante")
+    print("ins/i per inserire un piatto nel menu")
+    print("togli/t per togliere un piatto dal menu")
+    print("stato/st per verificare lo stato del ristorante")
+    print("apri/a per aprire il ristorante")
+    print("chiudi/c per chiudere il ristorante")
+    print("stampa/s per stampare il menu completo")
+    print("quit/q per uscire")
+    risposta = input(": ").lower()
+    if risposta == "d" or risposta == "descr":
+        ristorante_alessio.descrivi_ristorante()
+    elif risposta == "i" or risposta == "ins":
+        ristorante_alessio.aggiungi_al_menu()        
+    elif risposta == "t" or risposta == "togli":
+        ristorante_alessio.togli_dal_menu()        
+    elif risposta == "st" or risposta == "stato":
+        ristorante_alessio.stato_apertura()        
+    elif risposta == "a" or risposta == "apri":
+        ristorante_alessio.apri_ristorante()        
+    elif risposta == "c" or risposta == "chiudi":
+        ristorante_alessio.chiudi_ristorante()        
+    elif risposta == "s" or risposta == "stampa":
+        ristorante_alessio.stampa_menu()        
+    elif risposta == "q":
+        attivo = False
+
+
+
+
+
