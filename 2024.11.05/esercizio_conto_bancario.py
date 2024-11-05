@@ -44,6 +44,8 @@ class Banca:
                 continuare = False
 
 
+
+
 class ContoBancario:
     
     def __init__(self, titolare, saldo):
@@ -60,6 +62,8 @@ class ContoBancario:
         if importo <= 0:
             print("Errore: l'importo deve essere un numero positivo. ")
         self.__saldo = self.__saldo - importo
+        if self.__test_saldo_non_negativo() == False:
+            self.__error_message()
 
     def visualizza_saldo(self):
         print()
@@ -77,10 +81,12 @@ class ContoBancario:
     def set_titolare(self, importo):
         self.__titolare = importo
 
+    def __test_saldo_non_negativo(self):
+        return not (self.get_saldo < 0)
     
-
-
-
+    def __error_message(self):
+        print("ERRORE GENERALE FATALE TERRIBILE. RIPARTI DA ZERO.")
+    
 
 conto = ContoBancario('Alessio', 0)
 banca = Banca(conto)
