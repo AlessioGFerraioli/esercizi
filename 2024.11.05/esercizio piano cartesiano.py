@@ -16,6 +16,9 @@ class Punto:
         self.x = self.x + dx
         self.y = self.y + dy
 
+    def distanza_da_origine(self):
+        return (self.x)**2 + (self.y)**2 
+
 
 class PianoCartesiano:
 
@@ -29,8 +32,10 @@ class PianoCartesiano:
         print("------------")
         print("\nPiano Cartesiano")
         print("------------")
+        print("Coordinate..........Distanza da origine")
         for punto in self.punti:
-            print(f"({punto.x},{punto.y})")
+            print(f"({punto.x},{punto.y})          {punto.distanza_da_origine()}")
+
 
 
 lista_punti = []
