@@ -20,8 +20,8 @@ class Punto:
 class PianoCartesiano:
 
     def __init__(self, punti):
-        if len(punti) < 2: 
-            print("Servono almeno 2 punti per creare un piano cartesiano. \n")
+        if len(punti) < 3: 
+            print("Servono almeno 3 punti per creare un piano cartesiano. \n")
         else:
             self.punti = punti
 
@@ -34,8 +34,9 @@ class PianoCartesiano:
 
 
 lista_punti = []
-numero_punti = 2
+numero_punti = 3
 
+numero_punti = int(input("Quanti punti vuoi inserire? "))
 for i in range(numero_punti):
     print(f"Punto {i}")
     x = float(input("Inserisci coordinata x: "))
