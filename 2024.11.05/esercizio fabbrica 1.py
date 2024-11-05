@@ -45,9 +45,29 @@ class Prodotto:
 
 class Elettronica(Prodotto):
 
-    def __init__(self, nome, costo_produzione, prezzo_vendita, garanzia):
-        Prodotto.__init__(nome, costo_produzione, prezzo_vendita, garanzia)
-        self.garanzia = garanzia
+    def __init__(self, nome, costo_produzione, prezzo_vendita):
+        Prodotto.__init__(nome, costo_produzione, prezzo_vendita)
+        self.__codice_sconto = None
+
+    def get_codice_sconto(self):
+        if __check_codice_sconto_esiste(self) == True:
+            return self.__codice_sconto
+        else: 
+            print("Non esiste nessun codice sconto per il prodotto. ")
+    
+
+    def set_codice_sconto(self, codice):
+        self.__codice_sconto = codice
+
+    def __get_raw_codice_sconto(self):
+        return self.__codice_sconto
+    
+    def __check_codice_sconto_esiste(self):
+        if __get_raw_codice_sconto(self) is not None:
+            return False
+        else:
+            return True
+    
 
     
 class Abbigliamento(Prodotto):
@@ -55,7 +75,15 @@ class Abbigliamento(Prodotto):
     def __init__(self, nome, costo_produzione, prezzo_vendita, materiale):
         Prodotto.__init__(nome, costo_produzione, prezzo_vendita, materiale)
         self.materiale = materiale
+        self.__segretamente_usato = False
         
+    def get_segretamente_usato(self):
+        return self.__segretamente_usato
+
+    def set_segretamente_usato(self, usato_flag):
+        self.__segretamente_usato = usato_flag
+    
+
 
 class Fabbrica:
 
@@ -78,10 +106,14 @@ class Fabbrica:
             quantita = int(input("Quantità da aggiungere: "))
 
             if tipologia == 'elettronica': 
-               garanzia = input("Garanzia: ")    
-               prodotto_da_aggiungere = Elettronica(nome, prezzo_vendita, costo_produzione, garanzia)
+            
+               prodotto_da_aggiungere = Elettronica(nome, prezzo_vendita, costo_produzione)
+               risposta = input("Vuoi aggiungere un codice sconto? y/n: ")
+            if risposta == "y":
+                codice_sconto = input("Codice sconto: ")    
+                prodotto_da_aggiungere.set_codice_sconto(codice_sconto)
             if tipologia == 'abbigliamento': 
-               garanzia = input("Materiale: ")    
+               materiale = input("Materiale: ")    
                prodotto_da_aggiungere = Elettronica(nome, prezzo_vendita, costo_produzione, materiale)
             self.inventario[nome] = [prodotto_da_aggiungere, quantita]
         else:
