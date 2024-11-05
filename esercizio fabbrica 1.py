@@ -43,6 +43,20 @@ class Prodotto:
         return self.prezzo_vendita - self.costo_produzione
     
 
+class Elettronica(Prodotto):
+
+    def __init__(self, nome, costo_produzione, prezzo_vendita, garanzia):
+        Prodotto.__init__(nome, costo_produzione, prezzo_vendita, garanzia)
+        self.garanzia = garanzia
+
+    
+class Abbigliamento(Prodotto):
+
+    def __init__(self, nome, costo_produzione, prezzo_vendita, materiale):
+        Prodotto.__init__(nome, costo_produzione, prezzo_vendita, materiale)
+        self.materiale = materiale
+        
+
 class Fabbrica:
 
     inventario = {}
@@ -58,10 +72,17 @@ class Fabbrica:
         
 
         if nome not in self.inventario.keys():
+            tipologia = input("Tipologia prodotto (elettronica/abbigliamento): ")
             prezzo_vendita = float(input("Prezzo vendita: "))
             costo_produzione = float(input("Costo di produzione: "))
             quantita = int(input("Quantità da aggiungere: "))
-            prodotto_da_aggiungere = Prodotto(nome, prezzo_vendita, costo_produzione)
+
+            if tipologia == 'elettronica': 
+               garanzia = input("Garanzia: ")    
+               prodotto_da_aggiungere = Elettronica(nome, prezzo_vendita, costo_produzione, garanzia)
+            if tipologia == 'abbigliamento': 
+               garanzia = input("Materiale: ")    
+               prodotto_da_aggiungere = Elettronica(nome, prezzo_vendita, costo_produzione, materiale)
             self.inventario[nome] = [prodotto_da_aggiungere, quantita]
         else:
             quantita = int(input("Quantità da aggiungere: "))
