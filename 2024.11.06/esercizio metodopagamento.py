@@ -14,7 +14,7 @@ class MetodoPagamento:
     def __init__(self):
         pass
 
-    def effettua_pagamento(importo):
+    def effettua_pagamento(self, importo):
         pagamento_effettuato = True
         return pagamento_effettuato
 
@@ -24,17 +24,20 @@ class CartaDiCredito(MetodoPagamento):
     def __init__(self):
         pass
 
-    def effettua_pagamento(importo):
+    '''
+    def effettua_pagamento(self, importo):
         return super().effettua_pagamento()
-
+    '''
 
 class PayPal(MetodoPagamento):
 
     def __init__(self):
         pass
 
-    def effettua_pagamento(importo):
+    '''
+    def effettua_pagamento(self, importo):
         return super().effettua_pagamento()
+    '''
 
 
 class BonificoBancario(MetodoPagamento):
@@ -42,8 +45,10 @@ class BonificoBancario(MetodoPagamento):
     def __init__(self):
         pass
 
-    def effettua_pagamento(importo):
+    '''
+    def effettua_pagamento(self, importo):
         return super().effettua_pagamento()
+    '''
 
 
 class GestorePagamenti:
@@ -51,6 +56,7 @@ class GestorePagamenti:
     metodi_di_pagamento = {}
 
     def __init__(self):
+        # dizionario metodi di pagmaento (nome:oggetto)
         self.metodi_di_pagamento = {}
 
     def inserisci_metodo(self):
@@ -70,13 +76,14 @@ class GestorePagamenti:
             print(f"Metodo di pagamento bonifico bancario {nome} creato")
 
     def paga(self):
-        print("SKRRRRRRR")
-        metodo = input("Digita nome metodo pagamento da utilizzare: ")
-        if metodo in self.metodi_di_pagamento.keys():
+        print()
+        nome_metodo = input("Digita nome metodo pagamento da utilizzare: ")
+        if nome_metodo in self.metodi_di_pagamento.keys():
+            print(f"selezionato metodo {self.metodi_di_pagamento[nome_metodo]}")
             importo = input("Digita l'importo da pagare: ")
-            pagamento_effettuato = self.metodi_di_pagamento(metodo).effettua_pagamento(importo)
+            pagamento_effettuato = self.metodi_di_pagamento[nome_metodo].effettua_pagamento(importo)
             if pagamento_effettuato:
-                print("Pagamento effettuato1!!")
+                print("Pagamento effettuato!")
             else:
                 print("Pagamento non andato a buon fine, riprovare. ")
         else:
