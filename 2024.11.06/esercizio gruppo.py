@@ -1,4 +1,11 @@
 '''
+
+GRUPPO 2
+alessandro, alessio, domenico, simone
+
+
+
+
 creare una classe base Veicolo con attributi comuni a tutti i veicoli e
 metodi per operazioni comuni come l'accensione e lo spegnimento. 
 Derivando questa classe, creeranno specifiche classi per Auto, Furgone e Motocicletta,
@@ -154,7 +161,6 @@ class Motocicletta(Veicolo):
 
 
 
-# inserire get_name in tutti
 class GestoreParcoVeicoli:
 
     def __init__(self, veicoli=[]):
@@ -196,9 +202,8 @@ class GestoreParcoVeicoli:
                 veicolo_da_eliminare = veicolo
                 break
         
-            self.rimuovi(veicolo)
-            self.aggiungi_veicolo(veicolo)
-            print("Veicolo aggiunto al parco auto. ")
+            self.rimuovi_veicolo(veicolo)
+            print("Veicolo rimosso al parco auto. ")
 
 
     def aggiungi_veicolo(self, veicolo):
