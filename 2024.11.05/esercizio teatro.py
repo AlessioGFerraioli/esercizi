@@ -13,6 +13,7 @@ class Teatro:
     '''
     pass
 
+
 class Posto:
     '''
     classe padre per tutti i tipi di Posto del teatro
@@ -27,12 +28,14 @@ class Posto:
         libera(): libera il posto SE è occupato
         getter per numero e fila e uno stato che indica se il posto è occupato.
     '''
-    def __init__(self):
-        pass
+    def __init__(self, numero, fila, occupato):
+        self.__numero = numero
+        self.__fila = fila
+        self.__occupato = occupato
 
     def prenota(self):
-        if __test_azione_concessa(self, occupato=True) == True:
-            self.__set_occupato(self, True)
+        if self.__test_azione_concessa(True) == True:
+            self.__set_occupato(True)
         else:
             print("posto occupato! Impossibile prenotare!")
 
@@ -61,11 +64,71 @@ class Posto:
 class PostoVIP(Posto):
     '''
     classe derivata figlia di Posto per i posti VIP
+    aggiunge attributo servizi_extra 
+    sovrascive il metodo prenota() per gestire i servizi extra
     '''
-    pass
+
+    servizi_extra = 'Nessun servizio extra'
+
+    def __init__(self, numero, fila, occupato)
+        Posto.__init__(self, numero, fila, occupato)
+        self.servizi_extra = 'Nessun servizio extra'
+
+    def prenota():
+            '''
+            questo blocco (che è Posto.prenota()):
+            if self.__test_azione_concessa(True) == True:
+            self.__set_occupato(True)
+        else:
+            print("posto occupato! Impossibile prenotare!")
+
+            lo devo riscrivere qui 
+
+            o posso chiamare semplicemente la "prenota()" del padre (Posto) qui dentro
+            in modo che esegua quel blocco di codice: 
+
+            prenota()
+            '''
+
+        # e successivamente aggiungere servizio extra
+        # blocco di codice per impostare servizio extra
+        # servizio extra ........
+
+
 
 class PostoStandard(Posto):
-        '''
+    '''
     classe derivata figlia di Posto per i posti standard
     '''
     pass
+
+
+
+
+# esempio di utilizzo 
+
+
+
+mio_posto = Posto(4, "C", True)
+
+print("info posto:")
+print(mio_posto.get_posto())
+
+# provo a prenotare quando è gia occupato
+print("prenota")
+mio_posto.prenota()
+print("info posto:")
+print(mio_posto.get_posto())
+
+# esempio di accesso "forzato" a metodo privato
+print("set libero tramite __set_occupato")
+mio_posto._Posto__set_occupato(False)
+
+print("info posto:")
+print(mio_posto.get_posto())
+
+# provo a prenotare quando è libero
+print("prenota")
+mio_posto.prenota()
+print("info posto:")
+print(mio_posto.get_posto())
