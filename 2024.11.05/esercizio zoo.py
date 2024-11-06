@@ -112,7 +112,7 @@ class Zoo:
     def aggiungi_animale(self):
         print()
         print(f"Aggiungi animale")
-        print("Specie accolte:\nCavallo,\n Ciuco,\n Mulo,\n CiucoParlante,\n CiucoParlanteVolante" 
+        print("Specie accolte:\nCavallo,\n Ciuco,\n Mulo,\n CiucoParlante,\n CiucoParlanteVolante")
         specie = input("Seleziona specie: ").lower()
 
         nome = input("Inserisci nome: ")

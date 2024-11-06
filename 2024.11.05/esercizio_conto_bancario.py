@@ -63,7 +63,7 @@ class ContoBancario:
             print("Errore: l'importo deve essere un numero positivo. ")
         self.__saldo = self.__saldo - importo
         if self.__test_saldo_non_negativo() == False:
-            self.__error_message()
+            self.__error_message() 
 
     def visualizza_saldo(self):
         print()
