@@ -11,12 +11,27 @@ esercizio metodo pagamento
 
 class MetodoPagamento:
 
-    def __init__(self):
-        pass
+    def __init__(self, giacenza=0):
+        self.__giacenza = giacenza
 
     def effettua_pagamento(self, importo):
-        pagamento_effettuato = True
+        if self.test_giacenza_sufficiente == True:
+            pagamento_effettuato = True
+        else:
+            pagamento_effettuate = False    
         return pagamento_effettuato
+
+    def get_giacenza(self):
+        return self.__giacenza
+
+    def set_giacenza(self, giacenza):
+        self.__giacenza = giacenza
+
+    def test_giacenza_sufficiente(self, importo):
+        if importo > self.get_giacenza():
+            return False
+        else
+            return True
 
 
 class CartaDiCredito(MetodoPagamento):
@@ -62,9 +77,12 @@ class GestorePagamenti:
     def inserisci_metodo(self):
         print("Inserisci nuovo metodo di pagamento")
         nome = input("Dai nome: ")
+
         print("Tipologia (c per carta di credito, p per paypal, b per bonifico)")
         tipo = input(": ")
         
+        giacenza = input("Inserisci giacenza: ")
+
         if tipo == 'c':
             self.metodi_di_pagamento[nome] = CartaDiCredito()
             print(f"Metodo di pagamento carta di credito {nome} creato")
