@@ -177,6 +177,9 @@ while attivo == True:
 # esempio di metodo polimorfico che prende un generico "prodotto" che potrebbe essere
 # qualsiasi tra classe Abbiglaimento, Elettronica, Prodotto.
 # perché chiama un metodo della classe padre e quindi a cui tutti hanno accesso
-def calcola_profitto_prodotto(prodotto):
-    print(prodotto.calcola_profitto())
+def prodotto_ad_alto_profitto(prodotto):
+    if prodotto.calcola_profitto() > prodotto.prezzo_vendita/2
+        print("Questo prodotto ha un alto profitto.")
+    else:
+        print("Questo prodotto ha un basso profitto.")
 
