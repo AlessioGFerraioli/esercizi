@@ -30,35 +30,48 @@ class MetodoPagamento:
     def test_giacenza_sufficiente(self, importo):
         if importo > self.get_giacenza():
             return False
-        else
+        else:
             return True
 
 
 class CartaDiCredito(MetodoPagamento):
 
-    def __init__(self):
-        pass
-
-    '''
     def effettua_pagamento(self, importo):
-        return super().effettua_pagamento()
-    '''
+        # richiedi data carta
+        numero_carta = input("Numero carta: ")
+        scadenza = input("Scadenza mm/yy: ")
+        codice_segreto = input("Codice segreto: ")
 
+        if self.__test_credenziali_corrette(numero_carta, scadenza, codice_segreto):
+            # effettua pagamento
+            super().effettua_pagamento(importo)
+        else:
+            print("Credenziali errate.")
+
+    def __test_credenziali_corrette(self, numero_carta, scadenza, codice_segreto):
+        return True
+        
 class PayPal(MetodoPagamento):
 
-    def __init__(self):
-        pass
-
-    '''
     def effettua_pagamento(self, importo):
-        return super().effettua_pagamento()
-    '''
+        # richiedi dati paypal
+        mail = input("Indirizzo email: ")
+        password = input("Password: ")
+
+        if self.__test_credenziali_corrette(mail, password):
+            # effettua pagamento
+            super().effettua_pagamento(importo)
+        else:
+            print("Credenziali errate.")
+    
+
+    def __test_credenziali_corrette(self, mail, password):
+            return True
 
 
 class BonificoBancario(MetodoPagamento):
-
-    def __init__(self):
-        pass
+    
+    pass
 
     '''
     def effettua_pagamento(self, importo):

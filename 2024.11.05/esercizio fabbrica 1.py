@@ -173,3 +173,10 @@ while attivo == True:
     elif risposta == "q":
         attivo = False
 
+
+# esempio di metodo polimorfico che prende un generico "prodotto" che potrebbe essere
+# qualsiasi tra classe Abbiglaimento, Elettronica, Prodotto.
+# perché chiama un metodo della classe padre e quindi a cui tutti hanno accesso
+def calcola_profitto_prodotto(prodotto):
+    print(prodotto.calcola_profitto())
+
