@@ -24,10 +24,10 @@ CuocoLinea:
 
 class PersonaleCucina:
     
-    def __init__(self, nome, eta):
+    def __init__(self, nome, eta, piatti_conosciuti):
         self.__nome = nome
         self.__eta = eta
-        self.LISTA_MAGICA_RICHIESTA = []
+        self.__piatti_conosciuti = piatti_conosciuti
 
     def lavora(self):
         print(f"{self.get_nome()} sta lavorando.")
@@ -44,13 +44,20 @@ class PersonaleCucina:
     def set_eta(self, eta):
         self.__eta = eta
 
-        
+    def get_piatti_conosciuti(self):
+        return self.__piatti_conosciuti
+    
+    def set_piatti_conosciuti(self, piatti_conosciuti):
+        self.__piatti_conosciuti = piatti_conosciuti
+
+    def cucina_piatto(self, nome_piatto):
+        print(f"{self.get_nome()} prepara {nome_piatto}.")      
 
 
 class Chef(PersonaleCucina):
     
-    def __init__(self, nome, eta, specialita):
-        PersonaleCucina.__init__(self, nome, eta)
+    def __init__(self, nome, eta, piatti_conosciuti, specialita):
+        PersonaleCucina.__init__(self, nome, eta, piatti_conosciuti)
         self.__specialita = specialita
 
     def prepara_menu(self):
@@ -71,8 +78,11 @@ class Chef(PersonaleCucina):
 
 class SousChef(PersonaleCucina):
     
-    def gestisci_inventario(self):
-        print(f"{self.get_nome()} gestisce inventario.")  
+    def gestisci_inventario(self, inventario):
+        pass
+
+    def rifornisci_inventario(self, inventario, menu):
+        
 
     def lavora(self):
         self.gestisci_inventario()   
@@ -81,11 +91,110 @@ class SousChef(PersonaleCucina):
 
 class CuocoLinea(PersonaleCucina):
      
-     def cucina_piatto(self, nome_piatto):
+    def cucina_piatto(self, nome_piatto):
         print(f"{self.get_nome()} prepara {nome_piatto}.")  
      
-     def lavora(self):
+    def lavora(self):
         self.cucina_piatto("pizzoccheri")
      
      
+
+class Ristorante:
+
+    def __init__(self, menu, personale):
+        self.menu = menu
+        self.__personale = personale
+        self.__ordinazioni = []
+        self.__inventario = []
+        
+
+    def visualizza_menu(self):
+        print(self.menu)
+
+    def aggiungi_piatto_al_menu(self):
+        pass
+
+    def aggiungi_personale(self):
+        pass
+
+    def aggiungi_ordinazione(self, ordinazione):
+        self.get_ordinazioni().append(ordinazione)
+
+    def get_ordinazioni(self):
+        return self.__ordinazioni
+    
+    def set_ordinazioni(self, ordinazioni):
+        self.__ordinazioni = ordinazioni
+
+    def cucina(self):
+        for ordinazione in self.get_ordinazioni():
+            nome_cliente, piatto = ordinazione
+            piatto_preparato = self.prepara_piatto(piatto)
+            if piatto_preparato:
+                self.servi_piatto(piatto, nome_cliente)
+        # clears the list of ordinazioni
+        self.set_ordinazioni([])
+
+    def prepara_piatto(self, piatto):
+        piatto_conosciuto = False
+        for dipendente in self.__personale:
+            if piatto in dipendente.get_piatti_conosciuti():
+                piatto_conosciuto = True
+                dipendente.cucina_piatto(piatto)
+                return True
+        if piatto_conosciuto == False:
+            print(f"Nessun dipendente disponibile per cucinare il piatto {piatto}. ")
+            return False
+
+    def servi_piatto(self, piatto, nome_cliente):
+        print(f"Il piatto {piatto} è servito al cliente {nome_cliente}. ")
+
+
+vellutata_di_zucca = ["zucca", "velluto"]
+peperone_imbottonato = ["peperone", "bottoni"]
+cornetti_fraciti = ["cornetti", "fraciti"]
+
+menu_alessio = {
+                "vellutata di zucca" : ["zucca", "velluto"],
+                "peperone imbottonato" : ["peperone", "bottoni"],
+                "cornetti fraciti" : ["cornetti", "fracitume"]
+                }
+
+
+
+class Cliente:
+
+    def __init__(self, nome):
+        self.__nome = nome
+
+    def ordina_piatto(self, ristorante, piatto):
+        # controllare se il piatto è nel menu
+        if piatto not in ristorante.menu.keys():
+            print("Il piatto non è nel menu. Impossibile ordinare. ")
+            return False
+        else:
+            print(f"Il cliente {self.get_nome()} ordina il piatto {piatto}")
+            ordinazione = (self.get_nome(), piatto)
+            ristorante.aggiungi_ordinazione(ordinazione)
+            return ordinazione
+    
+    def get_nome(self):
+        return self.__nome
+
+
+alessio = Chef("alessio", 30, "peperone_imbottonato", "nessuna")
+sara = SousChef("sara", 23, "vellutata di zucca")
+
+staff_alessio = [alessio,sara]
+ristorante_da_alessio = Ristorante(menu_alessio, staff_alessio)
+
+
+giacomo = Cliente("giacomo")
+giacomo.ordina_piatto(ristorante_da_alessio, "peperone imbottonato")
+giacomo.ordina_piatto(ristorante_da_alessio, "cornetti fraciti")
+
+cristina = Cliente("cristina")
+cristina.ordina_piatto(ristorante_da_alessio, "vellutata di zucca")
+
+ristorante_da_alessio.cucina()
 
