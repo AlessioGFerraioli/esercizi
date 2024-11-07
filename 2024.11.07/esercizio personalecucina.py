@@ -50,7 +50,7 @@ class PersonaleCucina:
 class Chef(PersonaleCucina):
     
     def __init__(self, nome, eta, specialita):
-        PersonaleCucina.__init__(nome, eta)
+        PersonaleCucina.__init__(self, nome, eta)
         self.__specialita = specialita
 
     def prepara_menu(self):
@@ -72,7 +72,7 @@ class Chef(PersonaleCucina):
 class SousChef(PersonaleCucina):
     
     def gestisci_inventario(self):
-        pass
+        print(f"{self.get_nome()} gestisce inventario.")  
 
     def lavora(self):
         self.gestisci_inventario()   
@@ -82,4 +82,10 @@ class SousChef(PersonaleCucina):
 class CuocoLinea(PersonaleCucina):
      
      def cucina_piatto(self, nome_piatto):
-        pass
+        print(f"{self.get_nome()} prepara {nome_piatto}.")  
+     
+     def lavora(self):
+        self.cucina_piatto("pizzoccheri")
+     
+     
+
