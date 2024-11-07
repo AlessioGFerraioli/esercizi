@@ -82,7 +82,14 @@ class SousChef(PersonaleCucina):
         pass
 
     def rifornisci_inventario(self, inventario, menu):
-        
+        pass
+
+    def controlla_ingredienti_necessari(self, piatto, inventario, menu):
+        for ingrediente in menu[piatto]:
+            if ingrediente not in inventario:
+                return False
+        return True
+
 
     def lavora(self):
         self.gestisci_inventario()   
