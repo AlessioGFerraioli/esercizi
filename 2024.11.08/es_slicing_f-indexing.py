@@ -39,6 +39,12 @@ class ArraySlicer:
     def n_esimo_elemento(self, n):
         return self.get_array()[n]
 
+    def n_esimi_elementi(self, lista_di_array, n):
+        lista_n_esimi_elementi = []
+        for arr_ in lista_di_array:
+            lista_n_esimi_elementi.append(arr_.n_esimo_elemento(n))
+        return lista_n_esimi_elementi
+    
     def setta_valori_uguali_a(self, start, stop, valore):
         return self.get_array()[n][start:stop] = valore
 
