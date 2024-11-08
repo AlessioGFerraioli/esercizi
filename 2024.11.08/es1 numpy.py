@@ -6,11 +6,11 @@ e verifica il tipo di dat con dtype
 e la forma dell'array con shape
 '''
 
+import numpy as np
 
 class FloatArr:
 
     def __init__(self, start, stop):
-        import numpy as np
         self.__arr = np.arange(start,stop)
         print("Instanziato array.")
 
