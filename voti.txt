@@ -1,0 +1,2 @@
+Cosimo,10,10,10
+Giancarlo,1,5,3
