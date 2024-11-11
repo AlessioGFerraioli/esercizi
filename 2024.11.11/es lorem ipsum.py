@@ -28,7 +28,7 @@ Morbi pulvinar, massa a hendrerit condimentum, augue leo consequat lacus, in pos
 
 with open("testo_lorem_ipsum.txt", "w") as filename:
     filename.write(lorem_ipsum)
-filename.close()
+
 
 
 class LettoreTesti:
@@ -38,12 +38,13 @@ class LettoreTesti:
         self.testo = self.read_from_file(filename)
 
     def read_from_file(self, filename):
+        # leggi file con nome filename
         with open(filename, "r") as nome_file:
             testo = nome_file.read()
-        nome_file.close()
         return testo
     
     def print_testo(self):
+        # visualizza tutto il testo
         print(self.testo)
 
     def conta_righe(self):
