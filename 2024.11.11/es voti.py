@@ -22,7 +22,7 @@ class GestoreVoti:
 
     def registra_nuovo_studente(self, nome, lista_voti):
         self.leggi_file()
-        if nome not in self.registro_voti.keys():
+        if self.controlla_se_studente_esiste():
             self.registro_voti[nome] = lista_voti
         else:
             print(f"Studente con nome {nome} esiste già.")
@@ -80,19 +80,48 @@ class GestoreVoti:
         self.leggi_file()
         pass
 
+    def sostituisci_voto(self, nome, voto_da_sostituire, voto_nuovo):
+        self.leggi_file()
+        if self.controlla_se_studente_esiste:
+            if voto_da_sostituire in self.registro_voti[nome]:
+                indice = self.registro_voti[nome].index(voto_da_sostituire)
+                self.registro_voti[nome][indice] = voto_nuovo
+                print(f"Sostituito voto {voto_da_sostituire} con {voto_nuovo} per studente {nome}")
+                self.aggiorna_file()
+            else:
+                print(f"Non esiste il voto {voto_da_sostituire}.")  
+        else: 
+            print(f"Studente {nome} non esiste")
+        
+    def rimuovi_voto(self,nome, voto_da_rimuovere):
+        self.leggi_file()
+        if self.controlla_se_studente_esiste:
+            if voto_da_rimuovere in self.registro_voti[nome]: 
+                indice = self.registro_voti[nome].index(voto_da_rimuovere)
+                del self.registro_voti[nome][indice] 
+                print(f"Rimosso voto {voto_da_rimuovere} per studente {nome}")
+                self.aggiorna_file()
+            else:
+                print(f"Non esiste il voto {voto_da_rimuovere}.") 
+        else: 
+            print(f"Studente {nome} non esiste")
+        self.aggiorna_file()
+
+    def controlla_se_studente_esiste(self,nome):
+        return (nome in self.registro_voti.keys())
+
     def aggiungi_voto_a_studente(self, nome, voto):
         self.leggi_file()
-        if nome not in self.registro_voti.keys():
+        if not self.controlla_se_studente_esiste():
             print(f"Non esiste studente {nome}.")
         else:
             self.registro_voti[nome].append(voto)
             print(f"Aggiunto voto {voto} a studente {nome}.")
-        self.aggiorna_file()
+            self.aggiorna_file()
 
     def media_voti(self, nome):
         voti = self.registro_voti[nome]
         voti = list(map(int, voti)) 
-
         return sum(voti)/len(voti)
 
     def visualizza_medie_voti(self):
@@ -102,9 +131,7 @@ class GestoreVoti:
             print(f"{nome} : {self.media_voti(nome)}")
     
 
-
 registro = GestoreVoti('voti.txt')
-
 #registro.registra_nuovo_studente("Giancarlo", [1,5,3])
 #registro.registra_nuovo_studente("Cosimo", [10,10,10])
 #registro.registra_nuovo_studente("Lorenzo", [100,100,120])
