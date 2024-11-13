@@ -22,7 +22,7 @@ mycursor.execute(query)
 for x in mycursor:
     print(x)
 
-'''
+
 
 # fare il connector con un solo database (invece che tutti quello sull'host)
 mydb = mysql.connector.connect(
@@ -43,3 +43,44 @@ query = "SHOW TABLES"
 mycursor.execute(query)
 for x in mycursor:
     print(x)
+
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="root",
+    database = "pythonmysql"
+)
+query = "INSERT INTO utenti (nome,indirizzo) values(%s,%s)"
+# valori che vanno passati insieme alla query
+valori = ("tommaso", "via roma")
+mycursor = mydb.cursor()
+
+mycursor.execute(query, valori)
+
+mydb.commit()
+
+print(mycursor.rowcount, "Record inseriti")
+
+
+'''
+
+
+# esempio di select e fetching del risultato della query
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="root",
+    database = "pythonmysql"
+)
+mycursor = mydb.cursor()
+
+
+query = "select * from utenti where nome = %s"
+
+valore = ("tommaso",)
+
+mycursor.execute(query, valore)
+risultati = mycursor.fetchall()
+
+print(risultati)
