@@ -42,3 +42,52 @@ WHERE state = "CA"
 #Si vogliono recuperare dal database "world" la lingua e la nazione di ogni città.
 select *
 from (JOIN country
+
+
+#Si vuole recuperare il numero di città per nazione dal database 
+#"world" mostrando anche il nome della nazione e 
+#ordinando il risultato in base al numero di città.
+
+SELECT country.Name as Name , 
+	city.CountryCode,
+    COUNT(city.name) as numero_citta 
+FROM (country LEFT JOIN 
+      city ON 
+      city.CountryCode=country.Code)
+GROUP BY country.Code;
+
+Si vuole conoscere la lista di repubbliche con aspettativa di vita maggiore dei 70 anni
+SELECT country.Name 
+FROM country 
+WHERE GovernmentForm LIKE "%Rep%"
+    AND LifeExpectancy > 70;
+
+#Si vuole recuperare dal database WORLD le lingue parlate per nazione con la rispettiva percentuale di utilizzo;
+CREATE VIEW view_lingue AS
+SELECT c.Name,
+	l.Language, 
+	l.Percentage
+FROM countrylanguage AS l LEFT JOIN
+	country AS c 
+    ON l.CountryCode=c.Code;
+
+#Create una vista chiamata PopulationByContinent che mostri il nome del 
+#continente e la popolazione totale per ciascun continente.
+CREATE VIEW PopulationByContinent AS
+SELECT c.Continent, COUNT(c.Population)
+FROM country AS c
+GROUP BY Continent;
+
+#Create una vista chiamata CapitalCities che mostri il nome dello stato, 
+#il nome della sua capitale e la lingua ufficiale
+SELECT co.Name as State, 
+		cit.Name as Capital, 
+		l.Language
+FROM (country as co INNER JOIN
+	city as cit
+    ON co.Capital=cit.ID) INNER JOIN
+    countrylanguage as l 
+    ON co.Code=l.CountryCode
+    WHERE l.IsOfficial = "T";
+
+
