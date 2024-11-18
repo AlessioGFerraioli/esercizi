@@ -44,6 +44,9 @@ mycursor.execute(query)
 for x in mycursor:
     print(x)
 
+____________________________________________________
+
+#esempio di insert value nella tabella
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -61,6 +64,29 @@ mycursor.execute(query, valori)
 mydb.commit()
 
 print(mycursor.rowcount, "Record inseriti")
+
+
+__________________________________________________________
+
+
+# esempio di select e fetching del risultato della query
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="root",
+    database = "pythonmysql"
+)
+mycursor = mydb.cursor()
+
+
+query = "select * from utenti where nome = %s"
+
+valore = ("tommaso",)
+
+mycursor.execute(query, valore)
+risultati = mycursor.fetchall()
+
+print(risultati)
 
 
 '''
