@@ -1,12 +1,10 @@
 '''
 2024.11.25
-esercizio scikit-learn per classificazione con KNN usando il dataset Iris
+esercizio scikit-learn per classificazione con LinearRegressoin usando il dataset Iris
 
 '''
 
-
-
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LinearRegression
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -24,28 +22,25 @@ y = iris.target
 # separa in train e test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-# definisci il modello KNN
-knn = KNeighborsClassifier(n_neighbors=5)
+# definisci il modello linear regressoin
+model = LinearRegression()
 
 # training
-knn.fit(X, y)
+model.fit(X, y)
 
 # make a prediction
-predictions_test = knn.predict(X_test)
+predictions_test = model.predict(X_test)
+predictions_test = [round(pred) for pred in predictions_test]  # round predictions to the nearest integer for classification problems
 
 # evaluate the accuracy
 accuracy = accuracy_score(y_test, predictions_test)
 
-
-print("KNN model with 5 neighbors")
+print("Linear Regression Model")
 print("Accuracy on test data:", accuracy)
 
 print("REAL   |   PREDICTED")
 for i in range(len(y_test)):
     print(f"{y_test[i]}      |       {predictions_test[i]}")
-
-
-
 
 
 
