@@ -50,7 +50,7 @@ print("\nModello compilato con successo.")
 print("\nInizia l'addestramento del modello...")
 # Addestramento del modello
 history = model.fit(X_train, y_train,
-                    epochs=2,
+                    epochs=10,
                     batch_size=32,
                     validation_split=0.1)
 
