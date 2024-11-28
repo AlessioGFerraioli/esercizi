@@ -2,7 +2,7 @@
 import numpy as np # per operazioni numeriche.
 from keras.datasets import mnist # per caricare il dataset.
 from keras.models import Sequential # per costruire il modello sequenziale.
-import keras.layers # per aggiungere strati al modello.
+from keras.layers import Dense # per aggiungere strati al modello.
 from keras.utils import to_categorical # per convertire le etichette in formato one-hot
 import matplotlib.pyplot as plt  # per visualizzare i dati
 
@@ -15,16 +15,17 @@ plt.imshow(X_train[0], cmap='gray')
 plt.title(f'Etichetta: {y_train[0]}')
 plt.show()
 
+print("Normalizzo i dati...")
 # Normalizzazione dei dati
 X_train = X_train.astype('float32') / 255
 X_test = X_test.astype('float32') / 255
-
+print("Dati normalizzati")
+print("Reshape dei dati..")
 # Reshape dei dati
 X_train = X_train.reshape(-1, 28*28)
 X_test = X_test.reshape(-1, 28*28)
-
-# Conversione delle etichette in formato one-hot
-encoding
+print("Dati reshaped")
+# Conversione delle etichette in formato one-hot encoding
 y_train = to_categorical(y_train, num_classes=10)
 y_test = to_categorical(y_test, num_classes=10)
 
@@ -49,7 +50,7 @@ print("\nModello compilato con successo.")
 print("\nInizia l'addestramento del modello...")
 # Addestramento del modello
 history = model.fit(X_train, y_train,
-                    epochs=10,
+                    epochs=2,
                     batch_size=32,
                     validation_split=0.1)
 
