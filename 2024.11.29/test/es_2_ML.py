@@ -13,6 +13,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.decomposition import PCA
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import confusion_matrix
 
 import numpy as np
 
@@ -77,6 +78,17 @@ y_pred = model_opt.predict(X_test)
 print("\nValutazioni dell'accuracy:")
 print(f"Adjusted Rand Score: {adjusted_rand_score(y_test, y_pred):.3f}")
 print(f"Homogeneity Score: {homogeneity_score(y_test, y_pred):.3f}")
+
+
+# plotto la confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+
+fig, ax = plt.subplots()
+sns.heatmap(cm, annot=True, fmt='g', cmap='Blues', cbar=False, ax=ax)
+ax.set_xlabel('Predicted labels')
+ax.set_ylabel('True labels')
+ax.set_title('Confusion matrix')
+
 
 
 # ## Confronto cluster reali e predetti su INTERO dataset
