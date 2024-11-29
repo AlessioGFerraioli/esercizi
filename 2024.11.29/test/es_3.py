@@ -12,10 +12,10 @@ import matplotlib.pyplot as plt
 # Crea un dataset monolineare
 
 np.random.seed(666)
-#numeri = np.random.randint(1, 100, size=(50,))
 size = 50
 numeri = []
 n_iter = 0
+
 while len(numeri) < size and n_iter < 100:
     # genero cinque dati alla volta per assicurarmi che siano tutti diversi in gruppi da ccinque
     riga = np.random.randint(1, 100, size=(5,))
