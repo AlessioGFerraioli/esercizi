@@ -50,11 +50,14 @@ print(normalized_data)
 
 # Nessun valore deve essere uguale a un altro sulla stessa linea della collezione
 for i in range(len(normalized_data)):
-    for j in range(len(normalized_data[i])):
-        if normalized_data[i][j] in normalized_data[i][j+1:]:
-            print(f"Il numero {normalized_data[i][j]} è presente nella riga {i+1} e nella colonna {j+1}")
-            normalized_data[i][j] += .1
-            break
+    if len(normalized_data[i]) != len(set(normalized_data[i])):
+        print(f"Sulla riga {i+1} ci sono almeno due numeri uguali")
+        for j in range(len(normalized_data[i])):
+            for k in range(len(normalized_data[j])):
+                if normalized_data[i][j] == normalized_data[i][k] and j != k:
+                    normalized_data[i][k] += 0.1
+            
+            
         
 
 print(normalized_data)
