@@ -55,7 +55,7 @@ for i in range(len(normalized_data)):
         for j in range(len(normalized_data[i])):
             for k in range(len(normalized_data[j])):
                 if normalized_data[i][j] == normalized_data[i][k] and j != k:
-                    normalized_data[i][k] += 0.1
+                    normalized_data[i][k] = np.random.randint(90, 100000)
             
             
         
