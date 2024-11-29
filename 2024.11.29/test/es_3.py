@@ -63,6 +63,5 @@ for i in range(len(normalized_data)):
 print(normalized_data)
 
 # Stampa un grafico
-
 plt.plot(normalized_data.flatten())
 plt.show()
