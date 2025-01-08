@@ -16,15 +16,22 @@ continuare_gioco = True
 
 # ciclo per far definire l'intervallo all'utente
 while continuare_gioco == True:
-    # richiedere primo estremo
-    numero_1 = int(input("Inserisci un estremo dell'intervallo (numero intero): "))
-    # richiedere secondo estremo
-    numero_2 = int(input("Inserisci l'altro estremo dell'intervallo (numero intero): "))
-    #controllare se numero_1 > numero_2, se sì scambiarli tra loro
+
+    while True:
+        try:
+            # richiedere primo estremo
+            numero_1 = int(input("Inserisci un estremo dell'intervallo (numero intero): "))
+            # richiedere secondo estremo
+            numero_2 = int(input("Inserisci l'altro estremo dell'intervallo (numero intero): "))
+            break  # esci dal ciclo se entrambi gli input sono validi
+        except ValueError:
+            print("Per favore, inserisci solo numeri interi.")
+            
 
     if numero_1 == numero_2:
             print("I due estremi sono uguali, l'intervallo è nullo.")
     else:
+        #controllare se numero_1 > numero_2, se sì scambiarli tra loro
         if numero_1 > numero_2: 
                 numero_temp = numero_2
                 numero_2 = numero_1

@@ -1,6 +1,7 @@
 """
 2024.11.11 10.47
-part 2 il programma legge il file e l’utente dovrà cercare di indovinarne almeno 2 numero oppure avrà perso.
+part 2 il programma legge il file e l’utente dovrà cercare di indovinarne 
+almeno 2 numero oppure avrà perso.
 """
 
 
