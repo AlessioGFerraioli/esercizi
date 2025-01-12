@@ -52,13 +52,14 @@ def comprimi_stringa(stringa):
     return stringa_compressa
 
 
+
+stringa_input = str(input("Inserisci una stringa: "))
+stringa_compressa = comprimi_stringa(stringa_input)
+
 # controllo se la stringa compressa è più corta della stringa non compressa
     #altrimenti rimando indietro la stringa originale
 if not(len(stringa_compressa) < len(stringa_input)):
     stringa_compressa = stringa
-
-stringa_input = str(input("Inserisci una stringa: "))
-stringa_compressa = comprimi_stringa(stringa_input)
 
 if not(len(stringa_compressa) < len(stringa_input)):
     stringa_compressa = stringa_input
