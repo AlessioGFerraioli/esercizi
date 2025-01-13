@@ -62,8 +62,8 @@ class Sistema:
     def accesso(self):
         username = login()
         username = lista_utenti
-            if username not None:
-                gioco()
+        if username is not None:
+            gioco()
 
     
 

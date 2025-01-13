@@ -26,4 +26,6 @@ pc.set_processore("AMD Ryzen 5")
 # Modifica l'attributo privato tramite il setter
 print(pc.get_processore())
 
-print(pc.__processore)  # questa da errore
+#print(pc.__processore)  # questa da errore
+
+print(pc._Computer__processore)
