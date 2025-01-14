@@ -1,7 +1,4 @@
 
-
-
-
 class Utenti:
 
     def __init__(self, username, password):
