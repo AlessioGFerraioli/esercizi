@@ -34,8 +34,6 @@ def mirror_check(stringa):
     ritorna True o False
     '''
     stringa_reverse = stringa[::-1]
-    print("stringa_reverse")
-    print(stringa_reverse)
     if stringa_reverse == stringa:
         return True
     else:
